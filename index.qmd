@@ -1,0 +1,156 @@
+---
+title: "TP 2 - Python pour la data science"
+author: "Laura Gaimard"
+date: "25 septembre 2026"
+date-format: "D MMMM YYYY"
+slide-number: c/t
+lang: fr-FR
+slide-tone: false
+chalkboard:
+  theme: whiteboard
+format:
+  onyxia-revealjs:
+    output-file: index.html
+controls: true
+css: styles/custom.css
+ascii: true
+---
+
+## Au programme
+
+1. [**Rappels du TP 1**]{.orange} — le projet, NumPy et pandas
+2. [**Où trouver des données ?**]{.orange} — quelques portails d'open data
+3. [**Les jointures avec pandas**]{.orange} — associer plusieurs sources
+4. [**Introduction à Git**]{.orange} — versionner et partager son code
+
+Le cours en ligne : <https://pythonds.linogaliana.fr/>
+
+# 1️⃣ Rappels du TP 1
+
+## Le projet
+
+- [**Groupes de 3**]{.orange}, [**sujet libre**]{.orange} **à faire valider**
+- Jeux de données **interdits** : [**compétition Kaggle**]{.red2}, [**API Twitter/X**]{.red2}, [**données privées**]{.red2}
+- [**Choix du sujet avant le 2/10**]{.orange}
+- [**Dépôt GitHub public obligatoire**]{.orange}, projet exécutable sur le [**SSPCloud**]{.orange}
+
+Les règles d'or : [**reproductibilité**]{.orange}, [**pas de vibe coding**]{.red2}, [**pas de gros fichiers dans Git**]{.orange}
+
+## NumPy et pandas
+
+- [**NumPy**]{.orange} : l'[**array**]{.orange}, un tableau homogène et rapide ; on privilégie la [**vectorisation**]{.orange} aux boucles
+- [**pandas**]{.orange} : le [**DataFrame**]{.orange}, des colonnes de types différents, une indexation par label, les valeurs manquantes gérées nativement
+- le [**tidy data**]{.orange} : une variable = une colonne, une observation = une ligne, une valeur = une cellule
+
+```python
+df = pd.read_csv(url)
+df.head()                       # aperçu
+df.describe()                   # statistiques descriptives
+df.loc[df["pop"] > 10000, ["commune", "pop"]]   # filtrer, sélectionner
+```
+
+# 2️⃣ Où trouver des données ?
+
+## Quelques portails d'open data
+
+| Source | Contenu | Lien |
+|---|---|---|
+| [**data.gouv.fr**]{.orange} | la plateforme ouverte des données publiques françaises | <https://www.data.gouv.fr> |
+| [**Melodi (Insee)**]{.orange} | les données de l'Insee : population, revenus, emploi... et une API | <https://catalogue-donnees.insee.fr> |
+| [**Eurostat**]{.orange} | les statistiques européennes, comparables entre pays | <https://ec.europa.eu/eurostat/data/database> |
+| [**IGN**]{.orange} | les données géographiques : contours administratifs, routes, bâtiments | <https://geoservices.ign.fr> |
+| [**DREES**]{.orange} | santé, solidarité, protection sociale | <https://data.drees.solidarites-sante.gouv.fr> |
+| [**ADEME**]{.orange} | énergie, climat, émissions de gaz à effet de serre | <https://data.ademe.fr> |
+| [**Éducation nationale**]{.orange} | établissements, effectifs, résultats aux examens | <https://data.education.gouv.fr> |
+
+: {tbl-colwidths="[20,45,35]" .smaller}
+
+## Quelques conseils
+
+- lire la [**documentation**]{.orange} : définition des variables, champ, millésime, unité
+- privilégier une [**source officielle**]{.orange} et la [**citer**]{.orange}
+- récupérer les données [**par le code**]{.orange} (URL ou API) plutôt qu'à la main : c'est la condition de la [**reproductibilité**]{.orange}
+- penser dès le départ aux [**identifiants communs**]{.orange} qui permettront de croiser vos sources
+
+# 3️⃣ Les jointures avec pandas
+
+## Pourquoi associer des données ?
+
+> Un jeu de données prend généralement de la valeur lorsqu'il est [**comparé à d'autres sources**]{.orange}.
+
+Exemple du cours : les [**émissions de gaz à effet de serre**]{.orange} par commune (ADEME) croisées avec les [**revenus et la population**]{.orange} (Filosofi, Insee, via l'API Melodi).
+
+On associe les deux tables grâce à une [**clé de jointure**]{.orange} : une variable présente dans les deux sources et qui identifie de façon unique les observations.
+
+## Les types de jointures
+
+:::: {.columns}
+
+::: {.column width="55%"}
+```python
+pd.merge(emissions, filosofi,
+         on="code_commune",
+         how="left")
+```
+
+- `how="left"` : on garde toutes les lignes de la table de [**gauche**]{.orange}
+- `how="right"` : toutes celles de [**droite**]{.orange}
+- `how="inner"` : seulement les clés [**présentes des deux côtés**]{.orange}
+- `how="outer"` : [**toutes**]{.orange} les clés
+:::
+
+::: {.column width="45%"}
+[**Les bons réflexes**]{.orange}
+
+1. vérifier l'[**unicité**]{.orange} de la clé
+2. compter les lignes [**avant / après**]{.orange}
+3. regarder les observations [**non appariées**]{.orange}
+
+`indicator=True` et `validate="one_to_one"` sont vos amis.
+:::
+
+::::
+
+## Les identifiants dans les données françaises
+
+- le [**Code officiel géographique (COG)**]{.orange} : le code commune Insee (`75056` pour Paris), à ne pas confondre avec le [**code postal**]{.red2}
+- [**Sirene**]{.orange} : le SIREN identifie l'entreprise, le SIRET l'établissement
+- le [**NIR**]{.orange} (numéro de sécurité sociale) : un identifiant individuel [**très confidentiel**]{.red2}, jamais en open data
+
+[**Pourquoi un code commune quand on a déjà le nom ?**]{.orange} Homonymies, accents, majuscules, fusions de communes... le nom n'est pas une bonne clé.
+
+# 4️⃣ Introduction à Git
+
+## Pourquoi Git ?
+
+Fini les `projet_final_v2_corrige_VRAIMENT_FINAL.py` !
+
+- [**Git**]{.orange} est un logiciel de [**contrôle de version**]{.orange} : il garde l'historique de toutes les modifications d'un projet
+- [**GitHub**]{.orange} est une [**forge**]{.orange} : elle héberge le [**dépôt distant**]{.orange}, la source de vérité partagée par l'équipe
+- chacun travaille sur sa [**copie locale**]{.orange} (`git clone`) et synchronise avec le dépôt distant
+
+Pour le projet : [**indispensable**]{.orange} pour collaborer à 3 et pour le rendu.
+
+## La gymnastique quotidienne
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```bash
+git pull             # récupérer
+git add fichier.py   # préparer
+git commit -m "..."  # valider
+git push             # envoyer
+```
+:::
+
+::: {.column width="50%"}
+- [**staging area**]{.orange} : ce qui sera inclus dans le prochain commit
+- [**commit**]{.orange} : une version du projet, avec un message clair
+- [**.gitignore**]{.orange} : les fichiers à ne pas versionner (données, secrets...)
+- [**branches**]{.orange} : travailler sur une évolution sans casser la version principale
+:::
+
+::::
+
+Authentification à GitHub par un [**jeton**]{.orange} (_token_), à renseigner dans le SSPCloud. [**Jamais de jeton dans le code !**]{.red2}
