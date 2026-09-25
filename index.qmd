@@ -32,13 +32,13 @@ Le cours en ligne : <https://pythonds.linogaliana.fr/>
 [**1. Qu'est-ce qu'un array ? Qu'est-ce qu'un DataFrame ?**]{.orange}
 
 ::: {.fragment}
-L'array (NumPy) est un tableau dont tous les éléments sont [**du même type**]{.orange}. Le DataFrame (pandas) est un tableau de données dont les colonnes peuvent être [**de types différents**]{.orange}, avec des noms de colonnes et un index.
+L'array (NumPy) est un tableau dont tous les éléments sont [**du même type**]{.orange} (`dtype`) : entiers `int64`, réels `float64`, booléens `bool`... Le DataFrame (pandas) est un tableau de données avec des noms de colonnes et un index, dont les colonnes peuvent être [**de types différents**]{.orange} : numériques (`int64`, `float64`), texte (`object`, `string`), booléens, dates (`datetime64`), catégories (`category`).
 :::
 
 [**2. Quel est le lien entre un array et un DataFrame ?**]{.orange}
 
 ::: {.fragment}
-pandas est [**bâti sur NumPy**]{.orange} : chaque colonne d'un DataFrame (une `Series`) repose sur un array. On passe de l'un à l'autre avec `pd.DataFrame(array)` et `df.to_numpy()`.
+pandas est [**bâti sur NumPy**]{.orange} : chaque colonne d'un DataFrame est une `Series`, qui repose sur [**deux arrays**]{.orange} : un array des [**valeurs**]{.orange} et un array booléen, le [**masque**]{.orange}, qui indique les [**valeurs manquantes**]{.orange} (types `Int64`, `boolean`...). On passe de l'un à l'autre avec `pd.DataFrame(array)` et `df.to_numpy()`.
 :::
 
 [**3. Que faut-il vérifier avant d'importer un fichier ?**]{.orange}
