@@ -18,7 +18,7 @@ ascii: true
 
 ## Au programme
 
-1. [**Rappels du TP 1**]{.orange} — le projet, NumPy et pandas
+1. [**Rappels du TP 1**]{.orange} — quiz et rappels sur le projet
 2. [**Où trouver des données ?**]{.orange} — quelques portails d'open data
 3. [**Les jointures avec pandas**]{.orange} — associer plusieurs sources
 4. [**Introduction à Git**]{.orange} — versionner et partager son code
@@ -83,19 +83,6 @@ df.groupby("dep").agg({"Agriculture": ["sum", "mean"], "Résidentiel": "mean"})
 - [**Dépôt GitHub public obligatoire**]{.orange}, projet exécutable sur le [**SSPCloud**]{.orange}
 
 Les règles d'or : [**reproductibilité**]{.orange}, [**pas de vibe coding**]{.red2}, [**pas de gros fichiers dans Git**]{.orange}
-
-## NumPy et pandas
-
-- [**NumPy**]{.orange} : l'[**array**]{.orange}, un tableau homogène et rapide ; on privilégie la [**vectorisation**]{.orange} aux boucles
-- [**pandas**]{.orange} : le [**DataFrame**]{.orange}, des colonnes de types différents, une indexation par label, les valeurs manquantes gérées nativement
-- le [**tidy data**]{.orange} : une variable = une colonne, une observation = une ligne, une valeur = une cellule
-
-```python
-df = pd.read_csv(url)
-df.head()                       # aperçu
-df.describe()                   # statistiques descriptives
-df.loc[df["pop"] > 10000, ["commune", "pop"]]   # filtrer, sélectionner
-```
 
 # 2️⃣ Où trouver des données ?
 
