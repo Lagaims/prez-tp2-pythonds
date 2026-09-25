@@ -53,17 +53,13 @@ df.loc[df["pop"] > 10000, ["commune", "pop"]]   # filtrer, sélectionner
 
 ## Quelques portails d'open data
 
-| Source | Contenu | Lien |
-|---|---|---|
-| [**data.gouv.fr**]{.orange} | la plateforme ouverte des données publiques françaises | <https://www.data.gouv.fr> |
-| [**Melodi (Insee)**]{.orange} | les données de l'Insee : population, revenus, emploi... et une API | <https://catalogue-donnees.insee.fr> |
-| [**Eurostat**]{.orange} | les statistiques européennes, comparables entre pays | <https://ec.europa.eu/eurostat/data/database> |
-| [**IGN**]{.orange} | les données géographiques : contours administratifs, routes, bâtiments | <https://geoservices.ign.fr> |
-| [**DREES**]{.orange} | santé, solidarité, protection sociale | <https://data.drees.solidarites-sante.gouv.fr> |
-| [**ADEME**]{.orange} | énergie, climat, émissions de gaz à effet de serre | <https://data.ademe.fr> |
-| [**Éducation nationale**]{.orange} | établissements, effectifs, résultats aux examens | <https://data.education.gouv.fr> |
-
-: {tbl-colwidths="[20,45,35]" .smaller}
+- [**data.gouv.fr**]{.orange} : <https://www.data.gouv.fr>
+- [**Melodi (Insee)**]{.orange} : <https://catalogue-donnees.insee.fr>
+- [**Eurostat**]{.orange} : <https://ec.europa.eu/eurostat/data/database>
+- [**IGN**]{.orange} : <https://geoservices.ign.fr>
+- [**DREES**]{.orange} : <https://data.drees.solidarites-sante.gouv.fr>
+- [**ADEME**]{.orange} : <https://data.ademe.fr>
+- [**Éducation nationale**]{.orange} : <https://data.education.gouv.fr>
 
 ## Quelques conseils
 
