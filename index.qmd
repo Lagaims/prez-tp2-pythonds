@@ -185,3 +185,5 @@ git push             # envoyer
 ::::
 
 Authentification à GitHub par un [**jeton**]{.orange} (_token_), à renseigner dans le SSPCloud. [**Jamais de jeton dans le code !**]{.red2}
+
+# test modif
