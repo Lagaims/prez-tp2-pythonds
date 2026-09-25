@@ -27,6 +27,54 @@ Le cours en ligne : <https://pythonds.linogaliana.fr/>
 
 # 1️⃣ Rappels du TP 1
 
+## Quiz : rappels du TP 1 (1/2) {.smaller}
+
+[**1. Qu'est-ce qu'un array ? Qu'est-ce qu'un DataFrame ?**]{.orange}
+
+::: {.fragment}
+L'array (NumPy) est un tableau dont tous les éléments sont [**du même type**]{.orange}. Le DataFrame (pandas) est un tableau de données dont les colonnes peuvent être [**de types différents**]{.orange}, avec des noms de colonnes et un index.
+:::
+
+[**2. Quel est le lien entre un array et un DataFrame ?**]{.orange}
+
+::: {.fragment}
+pandas est [**bâti sur NumPy**]{.orange} : chaque colonne d'un DataFrame (une `Series`) repose sur un array. On passe de l'un à l'autre avec `pd.DataFrame(array)` et `df.to_numpy()`.
+:::
+
+[**3. Que faut-il vérifier avant d'importer un fichier ?**]{.orange}
+
+::: {.fragment}
+Son [**format**]{.orange} (csv, xlsx, parquet...), le [**séparateur**]{.orange} (`,` ou `;`), l'[**encodage**]{.orange} (`utf-8`, `latin-1`), la présence d'un [**en-tête**]{.orange}, le séparateur décimal, et sa [**taille**]{.orange}. On l'ouvre d'abord pour regarder les premières lignes.
+:::
+
+## Quiz : rappels du TP 1 (2/2) {.smaller}
+
+[**4. Comment filtrer un DataFrame ?**]{.orange}
+
+::: {.fragment}
+```python
+df[df["pop"] > 10000]                    # masque booléen
+df.loc[df["pop"] > 10000, ["commune"]]   # lignes et colonnes avec .loc
+df.query("pop > 10000")                  # avec query
+df[df["dep"].isin(["75", "92"])]         # appartenance à une liste
+```
+:::
+
+[**5. Qu'est-ce que le tidy data ?**]{.orange}
+
+::: {.fragment}
+Une [**variable = une colonne**]{.orange}, une [**observation = une ligne**]{.orange}, une [**valeur = une cellule**]{.orange}.
+:::
+
+[**6. Comment calculer plusieurs agrégations sur différentes variables ?**]{.orange}
+
+::: {.fragment}
+```python
+df.agg({"Agriculture": ["sum", "mean"], "Commune": "nunique"})
+df.groupby("dep").agg({"Agriculture": ["sum", "mean"], "Résidentiel": "mean"})
+```
+:::
+
 ## Le projet
 
 - [**Groupes de 3**]{.orange}, [**sujet libre**]{.orange} **à faire valider**
